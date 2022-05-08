@@ -30,6 +30,21 @@ async function run(){
       const result = await cursor.toArray();
       res.send(result)
     })
+    app.get('/UserOrder', async(req,res) =>{
+      const email =req.query.email
+      console.log(email);
+      const query ={email:email}
+      const cursor = CarCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result)
+    })
+    // delete api for deleting item from user item 
+    app.delete('/UserOrder/:id', async(req,res) =>{
+      const id = req.params.id;
+      const query = {_id: ObjectId(id)}
+      const result = await CarCollection.deleteOne(query)
+      res.send(result)
+    })
     // delete api for manage inventories page
     app.delete('/ManageInventories/:id', async(req,res) =>{
       const id = req.params.id;
