@@ -30,11 +30,17 @@ async function run(){
       const result = await cursor.toArray();
       res.send(result)
     })
-    // delete api for manage inventories 
+    // delete api for manage inventories page
     app.delete('/ManageInventories/:id', async(req,res) =>{
       const id = req.params.id;
       const query = {_id: ObjectId(id)}
       const result = await CarCollection.deleteOne(query)
+      res.send(result)
+    })
+    // post api for add item 
+    app.post('/ManageInventories', async(req,res)=>{
+      const newItem = req.body;
+      const result = await CarCollection.insertOne(newItem)
       res.send(result)
     })
   }
