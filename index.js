@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-
 require('dotenv').config()
 const port = process.env.PORT || 5000
 const app = express()
@@ -32,7 +31,6 @@ async function run(){
     })
     app.get('/UserOrder', async(req,res) =>{
       const email =req.query.email
-      console.log(email);
       const query ={email:email}
       const cursor = CarCollection.find(query);
       const result = await cursor.toArray();
@@ -66,12 +64,9 @@ async function run(){
 }
 run().catch(console.dir)
 
-
-
-
 app.get('/', (req, res) =>{
   res.send('success')
 })
 app.listen(port, () =>{
-  console.log('lintening to port', port);
+  console.log('listening to port', port);
 })
