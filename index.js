@@ -51,7 +51,7 @@ async function run(){
       const result = await CarCollection.deleteOne(query)
       res.send(result)
     })
-    // post api for add item 
+    // post api for add item by user
     app.post('/ManageInventories', async(req,res)=>{
       const newItem = req.body;
       const result = await CarCollection.insertOne(newItem)
